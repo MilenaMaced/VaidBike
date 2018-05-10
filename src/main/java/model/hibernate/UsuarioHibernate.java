@@ -25,6 +25,7 @@ package model.hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import model.classes.Usuario;
 import model.interfacesDao.UsuarioDao;
 import org.hibernate.Session;
@@ -36,6 +37,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
+
 public class UsuarioHibernate implements UsuarioDao {
 
     private SessionFactory sessions;
@@ -48,6 +50,11 @@ public class UsuarioHibernate implements UsuarioDao {
         return instance;
     }
 
+    private EntityManager manager;
+
+	public UsuarioHibernate(EntityManager manager) {
+		this.manager = manager;
+	}
     public UsuarioHibernate() {
         Configuration cfg = new Configuration().configure();
         this.sessions = cfg.buildSessionFactory();

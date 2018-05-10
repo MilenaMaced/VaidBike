@@ -54,7 +54,7 @@ Contributor(s):
         <mapping class="model.classes.Endereco"/>
         <mapping class="model.classes.Usuario"/>
         <mapping class="model.classes.Pagamento"/>
-        <mapping class="model.classes.Locacao"/>
+        
     
     </session-factory>
 </hibernate-configuration>

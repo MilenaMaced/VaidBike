@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +40,7 @@ import javax.persistence.OneToOne;
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
+@Entity
 public class Usuario {
 
     @Id
@@ -70,8 +72,7 @@ public class Usuario {
 
     }
 
-    public Usuario(int codigo, String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bikes) {
-        this.codigo = codigo;
+    public Usuario(String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bikes) {
         this.login = login;
         this.senha = senha;
         this.nome = nome;

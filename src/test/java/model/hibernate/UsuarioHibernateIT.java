@@ -22,16 +22,44 @@ SOFTWARE.
  */
 package model.hibernate;
 
-
+import java.util.ArrayList;
+import java.util.List;
+import model.classes.Usuario;
+import org.junit.Assert;
 import org.junit.Test;
-
 
 /**
  *
  * @author Milena Macedo
  */
 public class UsuarioHibernateIT {
-    
+
+//  private static ConexãoDBUnit conexao;
+//  private static EntityManagerFactory factory;
+//   
+//  private EntityManager manager;
+//  private UsuarioHibernate user;
+// 
+//  @BeforeClass
+//  public static void initClass() {
+//    conexao = new ConexãoDBUnit("UsuarioHibernate_DBUnitXml");
+//    factory = Persistence.createEntityManagerFactory("aTesteIntegracaoDbunit");
+//  }
+// 
+//  @Before
+//  public void init() {
+//    conexao.execute(DatabaseOperation.DELETE_ALL, "UsuarioHibernate_DBUnitXml.xml");
+// 
+//    conexao.execute(DatabaseOperation.INSERT, "UsuarioHibernate_DBUnitXml.xml");
+// 
+//    manager = factory.createEntityManager();
+//    this.user = new UsuarioHibernate(manager);
+//  }
+//   
+//  @After
+//  public void end() {
+//    this.manager.close();
+//  }
     public UsuarioHibernateIT() {
     }
 
@@ -40,7 +68,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testGetInstance() {
-    
+
     }
 
     /**
@@ -48,14 +76,14 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testRecuperar_String() {
-       }
+    }
 
     /**
      * Test of recuperar method, of class UsuarioHibernate.
      */
     @Test
     public void testRecuperar_String_String() {
-      
+
     }
 
     /**
@@ -63,7 +91,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testInserir() {
-      
+
     }
 
     /**
@@ -79,7 +107,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testRecuperar_int() {
-  
+
     }
 
     /**
@@ -87,7 +115,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testDeletar() {
-       
+
     }
 
     /**
@@ -95,7 +123,11 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testListarTodos() {
-       
+        UsuarioHibernate user = new UsuarioHibernate();
+        List<Usuario> resultado = user.listarTodos();
+        List<Usuario> retuldaoAtual = new ArrayList<>();
+        Assert.assertEquals(resultado, retuldaoAtual);
+
     }
-    
+
 }
