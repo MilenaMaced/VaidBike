@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +27,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -36,25 +38,25 @@ import javax.persistence.Id;
 public class Endereco {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
 
-    @Column(length=10)
+    @Column(length = 10)
     private String estado;
 
-    @Column(length=30)
+    @Column(length = 30)
     private String cidade;
 
-    @Column(length=12)
+    @Column(length = 12)
     private String cep;
 
-    @Column(length=50)
+    @Column(length = 50)
     private String bairro;
 
-    @Column(length=50)
+    @Column(length = 50)
     private String rua;
 
-    @Column(length=10)
+    @Column(length = 10)
     private String numero;
 
     @Deprecated
@@ -72,10 +74,6 @@ public class Endereco {
 
     public int getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public String getEstado() {

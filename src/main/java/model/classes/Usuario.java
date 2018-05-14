@@ -32,9 +32,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -46,33 +46,49 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    
     @Column(length = 50)
     private String login;
+    
     @Column(length = 50)
     private String senha;
+    
     @Column(length = 20)
     private String nome;
+    
     @Column(length = 15)
     private String cpf;
+    
     @Column(length = 5)
     private String sexo;
+    
     @Column(length = 10)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNasc;
-    @OneToOne
-    @JoinColumn(name = "cod_endereco", referencedColumnName = "id_endereco")
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
+    
     @Column(length = 15)
     private String telefone;
+    
     @Column(length = 20)
     private String email;
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    
+    @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bike> bikes;
 
+    @Deprecated
     public Usuario() {
 
     }
 
-    public Usuario(String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bikes) {
+ public Usuario(String login, String senha, String nome, String cpf,
+            String sexo, Date dataNasc, Endereco endereco, String telefone,
+            String email, List<Bike> bikes) {
+
+
         this.login = login;
         this.senha = senha;
         this.nome = nome;
@@ -87,10 +103,6 @@ public class Usuario {
 
     public int getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public String getLogin() {
@@ -240,7 +252,11 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bikes=" + bikes + '}';
+        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha="
+                + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo
+                + ", dataNasc=" + dataNasc + ", endereco=" + endereco
+                + ", telefone=" + telefone + ", email=" + email + ", bikes="
+                + bikes + '}';
     }
 
 }

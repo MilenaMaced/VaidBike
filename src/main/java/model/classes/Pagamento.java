@@ -26,6 +26,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -36,19 +37,22 @@ import javax.persistence.Id;
 public class Pagamento {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    @Column(length=50)
+
+    @Column(length = 50)
     private String tipo;
-    @Column(length=10)
+
+    @Column(length = 10)
     private double valor;
 
+    @Deprecated
     public Pagamento() {
 
     }
 
-    public Pagamento(int codigo, String tipo, double valor) {
-        this.codigo = codigo;
+    public Pagamento(String tipo, double valor) {
+//      this.codigo = codigo;
         this.tipo = tipo;
         this.valor = valor;
     }
@@ -56,10 +60,10 @@ public class Pagamento {
     public int getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+//
+//    public void setCodigo(int codigo) {
+//        this.codigo = codigo;
+//    }
 
     public String getTipo() {
         return tipo;
