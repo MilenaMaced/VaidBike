@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:fieldset legend="Cadastro de Usuário">
+
+            <h:form>
+                <p:dialog id="dialUsuario" visible="true" resizable="false" modal="true"
+                          widgetVar="widDialUsuario" header="Cadastro do Usuário">
+                    <p:tab>
+                        <p:panelGrid columns="2" columnClasses="label, values">
+
+
+                            <h:outputText value="Nome Completo*:" />
+                            <p:inputText value="#{UsuarioController.cadUsuario.nome}" required="true" label="Firstname"/>
+
+                            <h:outputText value="CPF*:"/>
+                            <p:inputMask id="txtCPF" value="#{UsuarioController.cadUsuario.cpf}" mask="999.999.999-99" required="true"
+                                         requiredMessage="Informe O CPF"/>
+
+                            <h:outputText value="Data de Nascimento*:"/>
+                            <p:inputMask id="txtdate" value="#{UsuarioController.cadUsuario.dataNasc}" mask="99/99/9999" required="true"
+                                         requiredMessage="Campo Obrigatório!"/>
+
+
+                            <h:outputText value="Sexo*:"/>
+                            <p:selectOneMenu id="txtSexo" value="#{UsuarioController.cadUsuario.sexo}" required="true" 
+                                             requiredMessage="Favor informar o sexo">
+                                <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                                <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                                <f:selectItem itemLabel="Escolha"/>
+                            </p:selectOneMenu>  
+                        </p:panelGrid>
+                        <p:commandButton value="Avançar" 
+                                         oncomplete="PF('widDialEndereco').show()" onclick="PF('widDialUsuario').hide()"/>
+                    </p:tab> 
+                </p:dialog>
+            </h:form>
+
+            <h:form>
+                <p:dialog id="dialEndereco" visible="false" resizable="false" modal="true"
+                          widgetVar="widDialEndereco" header="Cadastro do Endereço">
+                    <p:tab>
+                        <h:panelGrid columns="2" columnClasses="label, value">
+
+                            <h:outputText value="Logradouro: *" />
+                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.logradouro}" />
+
+                            <h:outputText value="Bairro: *" />
+                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.bairro}" />
+
+                            <h:outputText value="Cidade: *" />
+                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.cidade}" />
+
+                            <h:outputText value="CEP: *" />
+                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.cep}" />
+
+                            <h:outputText value="Estado(UF): *" />
+                            <p:selectOneMenu id="txtEstado" value="#{UsuarioController.cadUsuario.endereco.estado}" required="true" 
+                                             requiredMessage="Favor informar o sexo">
+                                <f:selectItem itemLabel="Escolha"/>
+                                <f:selectItem itemValue="ac" itemLabel="Acre-AC"/>
+                                <f:selectItem itemValue="al" itemLabel="Alagoas-AL"/>
+                                <f:selectItem itemValue="ap" itemLabel="Amapá-AP"/>
+                                <f:selectItem itemValue="am" itemLabel="Amazonas-AM"/>
+                                <f:selectItem itemValue="ba" itemLabel="Bahia-BA"/>
+                                <f:selectItem itemValue="ce" itemLabel="Ceará-CE"/>
+                                <f:selectItem itemValue="df" itemLabel="Distrito Federal-DF"/>
+                                <f:selectItem itemValue="es" itemLabel="Espírito Santo-ES"/>
+                                <f:selectItem itemValue="go" itemLabel="Goiás-GO"/>
+                                <f:selectItem itemValue="ma" itemLabel="Maranhão-MA"/>
+                                <f:selectItem itemValue="mt" itemLabel="Mato Grosso-MT"/>
+                                <f:selectItem itemValue="ms" itemLabel="Mato Grosso do Sul-MS"/>
+                                <f:selectItem itemValue="pa" itemLabel="Pará-PA"/>
+                                <f:selectItem itemValue="pb" itemLabel="Paraíba-PB"/>
+                                <f:selectItem itemValue="pe" itemLabel="Pernambuco-PE"/>
+                                <f:selectItem itemValue="rj" itemLabel="Rio de Janeiro-RJ"/>
+                                <f:selectItem itemValue="rn" itemLabel="Rio Grande do Norte-RN"/>
+                                <f:selectItem itemValue="rs" itemLabel="Rio Grande do Sul-RS"/>
+                                <f:selectItem itemValue="ro" itemLabel="Rondônia-RO"/>
+                                <f:selectItem itemValue="rr" itemLabel="Roraima-RR"/>
+                                <f:selectItem itemValue="sc" itemLabel="Santa Catarina-SC"/>
+                                <f:selectItem itemValue="sp" itemLabel="São Paulo-SP"/>
+                                <f:selectItem itemValue="se" itemLabel="Sergipe-SE"/>
+                                <f:selectItem itemValue="to" itemLabel="Tocantins-TO"/>
+                            </p:selectOneMenu> 
+                        </h:panelGrid>
+                        
+                        <p:commandButton value="Voltar" 
+                                         oncomplete="PF('widDialUsuario').show()" onclick="PF('widDialEndereco').hide()"/>
+                        <p:commandButton value="Avançar" 
+                                         oncomplete="PF('widDialContato').show()" onclick="PF('widDialEndereco').hide()"/>
+                        
+                    </p:tab> 
+                </p:dialog>
+            </h:form>
+
+
+
+            <h:form>
+                <p:dialog id="dialContato" visible="false" resizable="false" modal="true"
+                          widgetVar="widDialContato" header="Dados para Contato/Login"> 
+                    <p:tab>
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+
+                            <h:outputText value="Telefone: " />
+                            <p:inputText value="#{UsuarioController.cadUsuario.telefone}"/>
+
+                            <h:outputText value="Email: *" />
+                            <p:inputText value="#{UsuarioController.cadUsuario.email }" required="true" label="Email"/>
+
+                            <h:outputText value="Login: " />
+                            <p:inputText value="#{UsuarioController.cadUsuario.login}"/>
+
+                            <h:outputText value="Senha: " />
+                            <p:inputText value="#{UsuarioController.cadUsuario.senha}"/>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Voltar" 
+                                         oncomplete="PF('widDialEndereco').show()" onclick="PF('widDialContato').hide()"/>
+                        <p:commandButton value="Confirmar" 
+                                         oncomplete="PF('widDialConfirmar').show()" onclick="PF('widDialContato').hide()"/>
+                    </p:tab>
+                </p:dialog>
+            </h:form>
+
+            <h:form>
+                <p:dialog id="dialConfirmar" visible="false" resizable="false" modal="true"
+                          widgetVar="widDialConfirmar" header="Confere Aí!">
+                    <p:tab>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Nome Completo " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.nome}" styleClass="outputLabel"/>
+
+                                <h:outputText value="CPF: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.cpf}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Data de Nascimento: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.dataNasc}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="Sexo: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.sexo}" styleClass="outputLabel"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Logradouro: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.logradouro}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Bairro: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.bairro}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Cidade: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.cidade}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="CEP: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.cep}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="Estado: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.estado}" styleClass="outputLabel"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                
+                                <h:outputText value="Telefone: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.telefone}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Email: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.email}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Senha: " />
+                                <h:outputText value="#{UsuarioController.cadUsuario.senha}" styleClass="outputLabel"/>
+                             
+                            </h:panelGrid>
+                        
+                          <p:commandButton value="Cadastrar Usuario" action="#{pilotoController.cadastrar(motoController.cadMoto)}"
+                                    onclick="PF('widDialConfirmar').hide()"/>
+                        
+                    </p:tab>
+                </p:dialog>                 
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>
+

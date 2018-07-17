@@ -1,3 +1,5 @@
+/*
+
 /*MIT License
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
 Adrielly Calado Sales, Lucas Mendes Cavalcanti.
@@ -19,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
 package br.edu.ifpe.model.hibernate;
 
 import br.edu.ifpe.model.classes.Bike;
@@ -38,7 +41,7 @@ import org.junit.Test;
  *
  * @author Carlos André <carloscordeiroconsultor@gmail.com>
  */
-
+/*
 public class LocacaoHibernateTest {
 
     private static final LocacaoHibernate LOCACAOHIBERNATE
@@ -93,3 +96,4 @@ public class LocacaoHibernateTest {
       LOCACAOHIBERNATE.deletar(LOCACAO);
     }
 }
+*/

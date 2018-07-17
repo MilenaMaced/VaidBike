@@ -36,6 +36,7 @@ import org.junit.Ignore;
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
+/*
 public class PagamentoModelTest {
     
     private PagamentoModel pagamentoModel;
@@ -82,3 +83,4 @@ public class PagamentoModelTest {
             (new Pagamento("tipo",new BigDecimal (10.5) , null));
     }
 }
+*/

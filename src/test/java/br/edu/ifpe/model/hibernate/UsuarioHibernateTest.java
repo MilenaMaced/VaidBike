@@ -40,6 +40,8 @@ import org.junit.Test;
  *
  * @author Lucas Mendes <lucas.mendes147@live.com>
  */
+
+/*
 public class UsuarioHibernateTest {
 
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
@@ -112,3 +114,4 @@ public class UsuarioHibernateTest {
         USUARIOHIBERNATE.deletar(USUARIO1);
     }
 }
+*/
