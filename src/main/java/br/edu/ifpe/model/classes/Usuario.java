@@ -65,7 +65,6 @@ public class Usuario implements Serializable {
     @Column(length = 15, unique = true, nullable = true)
     private String telefone;
     @Column(length = 20, unique = true, nullable = true)
-
     private String email;
     @OneToMany(targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)

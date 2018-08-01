@@ -49,6 +49,9 @@ public class Bike implements Serializable {
     private String tipo;
     @Column(length = 10)
     private String cor;
+    @Column(length = 10)
+    private double valorBike;
+
     @ManyToOne
     @JoinColumn(name = "cod_usuario")
     private Usuario usuario;
@@ -57,11 +60,20 @@ public class Bike implements Serializable {
     public Bike() {
     }
 
-    public Bike(String modelo, String tipo, String cor, Usuario usuario) {
+    public Bike(String modelo, String tipo, String cor, double valorBike, Usuario usuario) {
         this.modelo = modelo;
         this.tipo = tipo;
         this.cor = cor;
+        this.valorBike = valorBike;
         this.usuario = usuario;
+    }
+
+    public double getValorBike() {
+        return valorBike;
+    }
+
+    public void setValorBike(double valorBike) {
+        this.valorBike = valorBike;
     }
 
     public int getCodigo() {
@@ -105,14 +117,17 @@ public class Bike implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Bike)) 
+        if (!(obj instanceof Bike)) {
             return false;
+        }
 
-        if (!((Bike) obj).modelo.equals(this.modelo)) 
+        if (!((Bike) obj).modelo.equals(this.modelo)) {
             return false;
+        }
 
-        if (!((Bike) obj).tipo.equals(this.tipo)) 
+        if (!((Bike) obj).tipo.equals(this.tipo)) {
             return false;
+        }
 
         return (((Bike) obj).cor.equals(this.cor));
     }

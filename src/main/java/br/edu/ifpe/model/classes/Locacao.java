@@ -24,7 +24,9 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,6 +61,32 @@ public class Locacao implements Serializable {
     public Locacao() {
     }
 
+    public int quantidadeDias() {
+
+        Period periodo = Period.between(this.retirada, this.devolucao);
+        return periodo.getDays();
+    }
+
+    public long quantidadeHoras() {
+        Duration duracao = Duration.between(this.retirada, this.devolucao);
+
+        return duracao.toHours();
+    }
+
+    public void calcularPagamento(){
+      
+        if(quantidadeDias()==0){
+            if(quantidadeHoras()<=1){
+                
+                
+               this.locatario.getBikes();
+                
+            }
+        }else {
+            
+        }
+        
+    }
     public Locacao(Usuario cliente, Usuario locatario,
             LocalDate retirada, LocalDate devolucao) {
         this.cliente = cliente;
@@ -108,17 +136,21 @@ public class Locacao implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Locacao)) 
+        if (!(obj instanceof Locacao)) {
             return false;
+        }
 
-        if (!((Locacao) obj).cliente.equals(this.cliente)) 
+        if (!((Locacao) obj).cliente.equals(this.cliente)) {
             return false;
+        }
 
-        if (!((Locacao) obj).locatario.equals(this.locatario)) 
+        if (!((Locacao) obj).locatario.equals(this.locatario)) {
             return false;
+        }
 
-        if (!((Locacao) obj).retirada.equals(this.retirada)) 
+        if (!((Locacao) obj).retirada.equals(this.retirada)) {
             return false;
+        }
 
         return (((Locacao) obj).devolucao.equals(this.devolucao));
     }
