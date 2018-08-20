@@ -97,7 +97,7 @@ public class UsuarioHibernate implements UsuarioDao {
         Transaction transaction = session.beginTransaction();
 
         try {
-            session.save(usuario);
+            session.saveOrUpdate(usuario);
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao inserir um Usuario "

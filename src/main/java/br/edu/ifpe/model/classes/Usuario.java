@@ -64,8 +64,8 @@ public class Usuario implements Serializable {
     private String telefone;
     @Column(length = 45, unique = true, nullable = true)
     private String email;
-    @OneToMany(targetEntity = Bike.class,
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany//(targetEntity = Bike.class,
+            //fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bike> bikes;
 
     @Deprecated
