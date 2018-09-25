@@ -117,6 +117,52 @@ public class UsuarioController {
 
     }
 
+    public String enviarSenha(String usrEmail) {
+        
+
+        Email email = new Email();
+
+        String hash = CriptografiaMD5.md5(cadUsuario.getEmail());
+
+        String message = "http://localhost:8080/vaidbike/gerarNovaSenha.xhtml"
+                + cadUsuario.getEmail() + "&hash=" + hash;
+
+        email.postMail(usrEmail, "Mudar Senha", message,
+                "vaidbikegus@gmail.com");
+        
+        return "login.xhtml";
+    }
+
+    public String enviarNovaSenha(String novaSenha) throws Exception {
+        String ret = "";
+
+        String email = FacesContext.getCurrentInstance().getExternalContext()
+                .getRequestParameterMap().get("email");
+        String hash = FacesContext.getCurrentInstance().getExternalContext()
+                .getRequestParameterMap().get("hash");
+
+        if (!(CriptografiaMD5.md5(email).equals(hash))) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                            "Hash Não confere!", ""));
+        } else {
+
+            if (cadUsuario != null) {
+                novaSenha = CriptografiaMD5.md5(novaSenha);
+                cadUsuario.setSenha(novaSenha);
+                this.setUsuarioLogado(cadUsuario);
+                instaceUSUARIOMODEL.alterar(cadUsuario);
+                ret = "login.xhtml";
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                                "E-mail Inválido!", ""));
+
+            }
+        }
+        return ret;
+    }
+
     public Usuario getCadUsuario() {
         return cadUsuario;
     }
