@@ -110,7 +110,19 @@ public class UsuarioModel {
 
     public List<Bike> listarBikes(Usuario user) throws Exception {
 
-        List<Bike> bike = ((UsuarioDao) DAO).listarTodasAsBikes(user);
+        List<Bike> bike = ((UsuarioDao) DAO).listarBikesUser(user);
+
+        if (bike == null) {
+            throw new Exception
+                ("Erro ao recuperar a lista de usuários no model");
+        } else {
+            return bike;
+        }
+    }
+    
+    public List<Bike> listarTodasBikes() throws Exception {
+
+        List<Bike> bike = ((UsuarioDao) DAO).listarTodasBikes();
 
         if (bike == null) {
             throw new Exception

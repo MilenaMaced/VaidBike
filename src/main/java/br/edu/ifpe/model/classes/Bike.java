@@ -43,11 +43,11 @@ public class Bike implements Serializable {
     private Integer codigo;
     @Column
     private BigDecimal valor;
-    @Column(length = 18)
+    @Column(length = 20)
     private String modelo;
     @Column(length = 20)
     private String tipo;
-    @Column(length = 10)
+    @Column(length = 30)
     private String cor;
     @ManyToOne
     @JoinColumn(name = "cod_usuario")

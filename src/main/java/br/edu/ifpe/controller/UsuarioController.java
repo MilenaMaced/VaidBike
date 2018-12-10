@@ -70,7 +70,7 @@ public class UsuarioController {
 
     }
 
-    public String registrarUsuario() throws Exception {
+    public String registrarUsuario(){
         String ret = "";
         try {
             cadUsuario.setSenha(CriptografiaMD5.md5(cadUsuario.getSenha()));
@@ -134,9 +134,9 @@ public class UsuarioController {
         try {
             this.bike.setUsuario(getUsuarioLogado());
 
-            bikes.add(this.bike);
+            //bikes.add(this.bike);
 
-            getUsuarioLogado().setBikes(bikes);
+            getUsuarioLogado().getBikes().add(bike);
 
             instaceUSUARIOMODEL.alterar(getUsuarioLogado());
 
@@ -164,16 +164,50 @@ public class UsuarioController {
         }finally{
             return bikes;
         }
-        /*  List<Bike> bikesUsuarioLogado = getUsuarioLogado().getBikes();
-        
-        for(Bike bik : bikesUsuarioLogado){
-            if(bik.hashCode() == bike.hashCode()){
-                this.bike = bik;
-            }
-        }*/
-        
     }
+    /*
+    public String deletarBike(){
+        
+        
+         try {
+            int index = -1;
+            for (int i = 0; i < getUsuarioLogado().getBikes().size(); i++) {
+                if (getUsuarioLogado().getBikes().get(i).getCodigo() 
+                            == bike.getCodigo()) {
+                    index = i;
+                }
+            }
+            if (index != -1) {
+                getUsuarioLogado().getBikes().remove(getUsuarioLogado()
+                        .getBikes().set(index, bike));
 
+                instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+            }
+
+        } catch (Exception alterarBikeException) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Dados Inválidos"));
+        } finally {
+            return "";
+        }
+       
+    }*/
+   
+    public List<Bike> listarTodasBikes() throws Exception {
+         List<Bike> bikes = new ArrayList();
+        try{
+           bikes = this.instaceUSUARIOMODEL.listarTodasBikes();
+            
+        }catch(Exception listarBikeException){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Algo inesperado ocorreu ao recuperar as bikes"));
+        }finally{
+            return bikes;
+        }
+    }
+   
     public Usuario getCadUsuario() {
         return cadUsuario;
     }

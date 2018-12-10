@@ -37,5 +37,7 @@ public interface UsuarioDao extends Dao<Usuario> {
 
     public Usuario recuperar(String login, String senha);
     
-    List<Bike> listarTodasAsBikes(Usuario usuario);
+    List<Bike> listarBikesUser(Usuario usuario);
+    
+    List<Bike> listarTodasBikes();
 }

@@ -175,7 +175,7 @@ public class UsuarioHibernate implements UsuarioDao {
     }
 
     @Override
-    public List<Bike> listarTodasAsBikes(Usuario usuario) {
+    public List<Bike> listarBikesUser(Usuario usuario) {
         Session session = this.SESSIONS.openSession();
         List<Bike> bikes = new ArrayList();
 
@@ -184,6 +184,23 @@ public class UsuarioHibernate implements UsuarioDao {
                 ("From Bike where cod_usuario = " + usuario.getCodigo()).list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
+                    + "\n" + e.getMessage());
+        } finally {
+            session.close();
+            return bikes;
+        }
+    }
+    
+    @Override
+     public List<Bike> listarTodasBikes() {
+        Session session = this.SESSIONS.openSession();
+        List<Bike> bikes = new ArrayList();
+
+        try {
+            bikes = (List )session.createQuery
+                ("From Bike").list();
+        } catch (Exception e) {
+            LOGGER.error("Ocorreu um problema ao recuperar todos "
                     + "\n" + e.getMessage());
         } finally {
             session.close();

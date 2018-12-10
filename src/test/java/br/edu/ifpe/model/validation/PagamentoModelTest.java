@@ -45,7 +45,7 @@ import org.junit.BeforeClass;
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoModelTest {
-    
+/*    
     private static final PagamentoModel PAGAMENTOMODEL = new PagamentoModel();
     
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
@@ -97,7 +97,7 @@ public class PagamentoModelTest {
     
     @AfterClass
     public static void deveLimparOBancoDados() throws Exception {
-        PAGAMENTOMODEL.deletar(PAGAMENTO);
+       // PAGAMENTOMODEL.deletar(PAGAMENTO);
     } 
-
+*/
 }
